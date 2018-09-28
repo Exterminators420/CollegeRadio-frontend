@@ -48,6 +48,7 @@ export default class YTSearch extends Component {
           played: data['played'],
           queue: data['queue']
         })
+        this.player.seekTo(this.state.played);
     }
   }
 
@@ -126,8 +127,12 @@ setABC(url){
   }
 
 log(event){
-  console.log(this.state.queue)
+  console.log(this.state.played)
 }
+
+ref = player => {
+  this.player = player
+    }
   render() {
     const {query, results, queue } = this.state
 
@@ -146,13 +151,28 @@ log(event){
             />
           </Grid.Column>
         </Grid>
-        <ReactPlayer 
+        <ReactPlayer
+        ref={this.ref} 
         url={this.state.url} 
         playing
         onEnded={this.handleEnd}
         onProgress={this.onProgress}
-        played={this.state.played} />
+        />
         <button onClick={this.log}>test</button>
+
+        <Slider 
+          discrete 
+          color="red" 
+          inverted={false} 
+          value={this.state.played} 
+          settings={
+            start: this.state.played,
+            min:0,
+            max:10,
+            step:1,
+          }
+
+        />
       </div>     
     )
   }
