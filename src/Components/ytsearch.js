@@ -160,19 +160,7 @@ ref = player => {
         />
         <button onClick={this.log}>test</button>
 
-        <Slider 
-          discrete 
-          color="red" 
-          inverted={false} 
-          value={this.state.played} 
-          settings={
-            start: this.state.played,
-            min:0,
-            max:10,
-            step:1,
-          }
-
-        />
+        
       </div>     
     )
   }
