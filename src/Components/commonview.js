@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Search, Grid,} from 'semantic-ui-react'
 import ReactPlayer from 'react-player'
 import { streamSocket } from './websocket.js';
+import Navbar from './navbar'
 const API_key='AIzaSyALsePfmVRgtvFqd7eSjBOSM7UL_Ti2YW4';
 
 
@@ -168,33 +169,40 @@ export default class CommonView extends Component {
     const {query, results,} = this.state
 
     return (
-      
-      <div className="YTsearchWrapper">
-        <Grid>
-          <Grid.Column width={6}>
-            <Search
-              size="large"
-              aligned="right"
-              onSearchChange={this.handleChange}
-              results={results}
-              value={query}
-              onResultSelect={this.handleQueue}
-            />
-          </Grid.Column>
-        </Grid>
-      </div>
 
-      <div className="VidWrapper">
-        <ReactPlayer
-          ref={this.ref} 
-          url={this.state.url} 
-          playing
-          onEnded={this.onEnd}
-          onProgress={this.onProgress}
-          volume={this.state.volume}
-          muted={this.state.muted}
-        />
-      </div>     
+      <div>
+
+        <Navbar />
+
+        <div >
+          <Grid>
+            <Grid.Column width={6}>
+              <Search
+                size="large"
+                aligned="right"
+                onSearchChange={this.handleChange}
+                results={results}
+                value={query}
+                onResultSelect={this.handleQueue}
+              />
+            </Grid.Column>
+          </Grid>
+        </div>
+
+        <div className="VidWrapper">
+          <ReactPlayer
+            ref={this.ref} 
+            url={this.state.url} 
+            playing
+            onEnded={this.onEnd}
+            onProgress={this.onProgress}
+            volume={this.state.volume}
+            muted={this.state.muted}
+          />
+        </div>
+
+      </div>
+           
     )
   }
 }
