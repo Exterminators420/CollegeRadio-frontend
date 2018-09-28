@@ -5,7 +5,7 @@ import { streamSocket } from './websocket.js';
 const API_key='AIzaSyALsePfmVRgtvFqd7eSjBOSM7UL_Ti2YW4';
 
 
-export default class YTSearch extends Component {
+export default class CommonView extends Component {
   constructor(props) {
     super(props);
 
@@ -168,7 +168,7 @@ export default class YTSearch extends Component {
     const {query, results,} = this.state
 
     return (
-      <
+      
       <div className="YTsearchWrapper">
         <Grid>
           <Grid.Column width={6}>
