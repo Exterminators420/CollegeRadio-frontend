@@ -10,10 +10,10 @@ class Queue extends React.Component {
     const myList = queue.map(item => (
           <Table.Row>
             <Table.Cell>
-              <Header as='h2' image>
+              <Header as='h3' image>
                 <Image src={item.image} rounded size='medium' />
                 <Header.Content>
-                  {item.title}
+                  <div className="song">{item.title}</div>
                 </Header.Content>
               </Header>
             </Table.Cell>
@@ -24,7 +24,7 @@ class Queue extends React.Component {
 
     return (
       <div id="queue">
-          <Header as='h2' attached='top'>
+          <Header as='h3' attached='top'>
               Currently Playing . . . 
           </Header>
           <Segment attached>

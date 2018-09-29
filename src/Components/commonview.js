@@ -3,7 +3,7 @@ import {Search, Grid,} from 'semantic-ui-react'
 import ReactPlayer from 'react-player'
 import Navbar from './navbar'
 import Queue from './queue.js'
-import './commonview.css'
+import Chat from './chat.js'
 
 const API_key = 'AIzaSyALsePfmVRgtvFqd7eSjBOSM7UL_Ti2YW4';
 
@@ -41,7 +41,7 @@ export default class CommonView extends Component {
 
   componentDidMount() {
     const streamSocket = this.state.streamSocket;
-    
+    for (var i=0; i<1; i++){
     streamSocket.onmessage = (e) => {
         let data = JSON.parse(e.data);
         console.log(data['played'])
@@ -51,11 +51,15 @@ export default class CommonView extends Component {
           played: data['played'],
           queue: data['queue']
         },
-        () => {for (var i=0; i<1; i++){this.player.seekTo(this.state.played)}
+        () => {this.player.seekTo(this.state.played)
           })
     }
   }
+  }
 
+  componentWillReceiveProps(nextProps) {
+
+  }
 
 
   
@@ -166,7 +170,7 @@ export default class CommonView extends Component {
 
     return (
 
-      <div className="mainWrapper">
+      <div>
 
         <Navbar name={this.props.match.params.name} />
 
@@ -183,20 +187,6 @@ export default class CommonView extends Component {
             </Grid.Column>
           </Grid>
         </div>
-<<<<<<< HEAD
-
-        <div className="VidWrapper">
-          <ReactPlayer
-            ref={this.ref} 
-            url={this.state.url} 
-            playing
-            onEnded={this.onEnd}
-            onProgress={this.onProgress}
-            volume={this.state.volume}
-            muted={this.state.muted}
-          />
-        </div>
-=======
         <div id="flex-container">
             <div className="VidWrapper">
               <ReactPlayer
@@ -209,24 +199,14 @@ export default class CommonView extends Component {
                 muted={this.state.muted}
               />
             </div>
-          
+            <Chat/>
           <Queue queue={this.state.queue}/>
+          
       </div>
       </div>
- 
-        <Queue queue={this.state.queue}/>
 
-        <div className="seek-slider-container">
-        <input 
-          type="range" 
-          name="seek" min="0" 
-          max={this.state.duration} 
-          value={this.state.seek} 
-          onChange={this.handleSeek} 
-          className='slider' />
-        </div>
-      
-      </div>  
+
+           
     )
   }
 }
