@@ -191,7 +191,7 @@ export default class CommonView extends Component {
             <Grid.Column width={3}>
               <Search
                 size="large"
-                aligned="right"
+                aligned
                 onSearchChange={this.handleChange}
                 results={results}
                 value={query}
