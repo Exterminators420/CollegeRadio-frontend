@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Search, Grid,} from 'semantic-ui-react'
 import ReactPlayer from 'react-player'
 import { streamSocket } from './websocket.js';
+import Navbar from './navbar'
 const API_key='AIzaSyALsePfmVRgtvFqd7eSjBOSM7UL_Ti2YW4';
 
 
@@ -73,7 +74,7 @@ export default class CommonView extends Component {
           title: obj.snippet.title,
           description: 'Youtube search',
           image:`https://img.youtube.com/vi/${obj.id.videoId}/default.jpg`,
-          url: `"https://www.youtube.com/watch?v=${obj.id.videoId}"`,
+          url: `"https://www.youtube.com/watch?v=${obj.id.videoId}&autoplay=0"`,
         }));
 
         this.setState({results: searchResults}) 
@@ -104,7 +105,7 @@ export default class CommonView extends Component {
 
     if (!isOnTheList) {
       new_song !== '' && this.setState({queue: [...queue,new_song]}, 
-        () => {this.setUrl;}
+        () => {this.setUrl();}
       )
     }
   }
@@ -133,7 +134,7 @@ export default class CommonView extends Component {
     array.splice(index, 1);
 
     this.setState({queue: array}, 
-      () => {this.setUrl;}
+      () => {this.setUrl();}
     )
   }
 
@@ -154,7 +155,7 @@ export default class CommonView extends Component {
   }
 
   log(event){
-    console.log(this.state.queue)
+    console.log(this.state.url)
   }
 
 //function referencing player
@@ -168,33 +169,40 @@ export default class CommonView extends Component {
     const {query, results,} = this.state
 
     return (
-      
-      <div className="YTsearchWrapper">
-        <Grid>
-          <Grid.Column width={6}>
-            <Search
-              size="large"
-              aligned="right"
-              onSearchChange={this.handleChange}
-              results={results}
-              value={query}
-              onResultSelect={this.handleQueue}
-            />
-          </Grid.Column>
-        </Grid>
-      </div>
 
-      <div className="VidWrapper">
-        <ReactPlayer
-          ref={this.ref} 
-          url={this.state.url} 
-          playing
-          onEnded={this.onEnd}
-          onProgress={this.onProgress}
-          volume={this.state.volume}
-          muted={this.state.muted}
-        />
-      </div>     
+      <div>
+
+        <Navbar />
+
+        <div >
+          <Grid>
+            <Grid.Column width={3}>
+              <Search
+                size="large"
+                aligned="right"
+                onSearchChange={this.handleChange}
+                results={results}
+                value={query}
+                onResultSelect={this.handleQueue}
+              />
+            </Grid.Column>
+          </Grid>
+        </div>
+
+        <div className="VidWrapper">
+          <ReactPlayer
+            ref={this.ref} 
+            url={this.state.url} 
+            playing
+            onEnded={this.onEnd}
+            onProgress={this.onProgress}
+            volume={this.state.volume}
+            muted={this.state.muted}
+          />
+        </div>
+      <button onClick={this.log}>test</button>
+      </div>
+           
     )
   }
 }
