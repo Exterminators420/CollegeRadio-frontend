@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Menu, Segment,Dropdown , Icon} from 'semantic-ui-react'
+import { Menu, Dropdown} from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 export default class Navbar extends Component {
 
@@ -16,37 +17,47 @@ export default class Navbar extends Component {
         <Menu attached = "top" inverted color ="violet" size="huge">
 
           <Menu.Menu position="left">
-
-            <Menu.Item 
-              name='Home' 
-              active={activeItem === 'Home'} 
-              onClick={this.handleItemClick} 
-            />
-
-            <Menu.Item
-              name='Pop'
-              active={activeItem === 'Pop'}
-              onClick={this.handleItemClick}
-            />
-
-            <Menu.Item
-              name='Rock'
-              active={activeItem === 'Rock'}
-              onClick={this.handleItemClick}
-            />
-
-            <Menu.Item
-              name='Romance'
-              active={activeItem === 'Romance'}
-              onClick={this.handleItemClick}
-            />
-
-            <Menu.Item
-              name='Bollywood'
-              active={activeItem === 'Bollywood'}
-              onClick={this.handleItemClick}
-            />
-
+          
+            <Link to="/home" >
+              <Menu.Item 
+                name='Home' 
+                active={activeItem === 'Home'} 
+                onClick={this.handleItemClick}
+              />
+            </Link>
+            
+            <Link to="/pop" >
+              <Menu.Item
+                name='Pop'
+                active={activeItem === 'Pop'}
+                onClick={this.handleItemClick}
+              />
+            </Link>
+            
+            <Link to="/rock" >
+              <Menu.Item
+                name='Rock'
+                active={activeItem === 'Rock'}
+                onClick={this.handleItemClick}
+              />
+            </Link>
+            
+            <Link to="/romance" >
+              <Menu.Item
+                name='Romance'
+                active={activeItem === 'Romance'}
+                onClick={this.handleItemClick}
+              />
+            </Link>
+            
+            <Link to="/bollywood" >
+              <Menu.Item
+                name='Bollywood'
+                active={activeItem === 'Bollywood'}
+                onClick={this.handleItemClick}
+              />
+            </Link>
+            
           </Menu.Menu>
         
           <Menu.Menu position='right'>
