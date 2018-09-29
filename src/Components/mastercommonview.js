@@ -2,12 +2,11 @@ import React, {Component} from 'react'
 import {Search, Grid,} from 'semantic-ui-react'
 import ReactPlayer from 'react-player'
 import Navbar from './navbar'
-import Queue from './queue.js'
 
 const API_key = 'AIzaSyALsePfmVRgtvFqd7eSjBOSM7UL_Ti2YW4';
 
 
-export default class CommonView extends Component {
+export default class MasterCommonView extends Component {
   constructor(props) {
     super(props);
 
@@ -33,6 +32,7 @@ export default class CommonView extends Component {
 
     this.send_data = this.send_data.bind(this);
 
+    this.onProgress = this.onProgress.bind(this);
     this.onEnd = this.onEnd.bind(this);
 
     this.log = this.log.bind(this);   //for devlopement only
@@ -43,7 +43,6 @@ export default class CommonView extends Component {
 
   componentDidMount() {
     const streamSocket = this.state.streamSocket;
-    for (var i=0; i<1; i++){
     streamSocket.onmessage = (e) => {
         let data = JSON.parse(e.data);
         console.log(data['played'])
@@ -52,11 +51,12 @@ export default class CommonView extends Component {
           duration: data['duration'],
           played: data['played'],
           queue: data['queue']
-        },
-        () => {this.player.seekTo(this.state.played)
-          })
+        })
     }
-  }
+
+    if (this.state.played){
+      this.player.seekTo(this.state.played);
+      }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -155,6 +155,10 @@ export default class CommonView extends Component {
 
 
 //function defining progress of a video
+  onProgress = state => {
+      this.setState(state);
+      this.send_data();
+  }
 
   log(event){
     console.log(this.state.queue)
@@ -202,10 +206,7 @@ export default class CommonView extends Component {
           />
         </div>
       <button onClick={this.log}>test</button>
-      <Queue queue={this.state.queue}/>
       </div>
-
-
            
     )
   }
