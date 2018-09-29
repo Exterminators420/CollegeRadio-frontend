@@ -21,10 +21,10 @@ export default class CommonView extends Component {
       loaded: 0,
       duration: 0,
       seeking: 0,
-      queue: ({title: '',
+      queue: [{title: '',
               image: '',
               url:''
-      }),
+      }],
     };
 
     this.handleChange = this.handleChange.bind(this);
