@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {Search, Grid,} from 'semantic-ui-react'
 import ReactPlayer from 'react-player'
 import Navbar from './navbar'
+import debounce from 'lodash.debounce';
+
 const API_key = 'AIzaSyALsePfmVRgtvFqd7eSjBOSM7UL_Ti2YW4';
 
 
@@ -25,7 +27,7 @@ export default class CommonView extends Component {
               url:''
       }),
     };
-
+    this.setSocket = this.setSocket.bind(this)
     this.handleChange = this.handleChange.bind(this);
     this.handleQueue = this.handleQueue.bind(this);
     this.setUrl = this.setUrl.bind(this)
@@ -38,28 +40,34 @@ export default class CommonView extends Component {
     this.log = this.log.bind(this);   //for devlopement only
   }
 
+//function defining streamSocket
+
+  setSocket(){
+    this.setState({channel: this.props.match.params.name},
+      () => this.setState({streamSocket: new WebSocket(`ws://127.0.0.1:8000/ws/stream/${this.state.channel}/`)})
+    )
+  }
 
 //function responsible for syncing data 
 
   componentDidMount() {
-    this.setState({channel: this.props.match.params.name},
-      () => this.setState({streamSocket: new WebSocket(`ws://127.0.0.1:8000/ws/stream/${this.state.channel}`)},
-      () => {
-        this.state.streamSocket.onmessage = (e) => {
-          let data = JSON.parse(e.data);
-          
-          this.setState({
-            url: data['url'],
-            duration: data['duration'],
-            played: data['played'],
-            queue: data['queue']
-          })
-    
-          if (!this.state.played){
-          this.player.seekTo(this.state.played);
-          }
+    this.setSocket();
+    () => {
+      this.state.streamSocket.onmessage = (e) => {
+        let data = JSON.parse(e.data);
+        
+        this.setState({
+          url: data['url'],
+          duration: data['duration'],
+          played: data['played'],
+          queue: data['queue']
+        })
+  
+        if (!this.state.played){
+        this.player.seekTo(this.state.played);
         }
-      } ))
+      }
+    }  
   }
 
   
@@ -125,10 +133,8 @@ export default class CommonView extends Component {
           played: this.state.played,
           duration: this.state.duration,
           queue: this.state.queue,
-    }
-    const {channel} = this.props.match.params.name
-    const {streamSocket} = new WebSocket(`ws://127.0.0.1:8000/ws/stream/${channel}`);
-    streamSocket.send(JSON.stringify(data));
+    };
+    this.state.streamSocket.send(JSON.stringify(data));
   }
 
 
