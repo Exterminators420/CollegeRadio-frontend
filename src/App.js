@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import 'antd/dist/antd.css';
 import * as actions from './store/actions/auth';
+import BaseRouter from "./main";
 
  
 
@@ -15,7 +16,11 @@ class App extends Component {
   render() {
     return (
       <div>
-      
+        <Router>
+          
+              <BaseRouter />
+        
+        </Router>
       </div>
     );
   }
@@ -29,6 +34,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+
     onTryAutoSignup: () => dispatch(actions.authCheckState())
   }
 }
