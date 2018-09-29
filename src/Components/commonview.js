@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import {Search, Grid,} from 'semantic-ui-react'
 import ReactPlayer from 'react-player'
-import { streamSocket } from './websocket.js';
 import Navbar from './navbar'
-const API_key='AIzaSyALsePfmVRgtvFqd7eSjBOSM7UL_Ti2YW4';
+const API_key = 'AIzaSyALsePfmVRgtvFqd7eSjBOSM7UL_Ti2YW4';
 
 
 export default class CommonView extends Component {
@@ -41,9 +40,11 @@ export default class CommonView extends Component {
 //function responsible for syncing data 
 
   componentDidMount() {
+    const {channel} = this.props.match.params
+    const {streamSocket} = new WebSocket(`ws://127.0.0.1:8000/ws/stream/${channel}`);
     streamSocket.onmessage = (e) => {
       let data = JSON.parse(e.data);
-
+      
       this.setState({
         url: data['url'],
         duration: data['duration'],
@@ -57,7 +58,7 @@ export default class CommonView extends Component {
     }
   }
 
-
+  
 //function responsible for retrieving and mapping search results
 
   handleChange = (event) => {    
@@ -97,7 +98,7 @@ export default class CommonView extends Component {
     let isOnTheList = 0;
 
     for(var i = 0; i < queue.length; i++) {
-      if (queue[i].title == new_song.title) {
+      if (queue[i].title === new_song.title) {
         isOnTheList=1;
         break;
       }
@@ -121,7 +122,8 @@ export default class CommonView extends Component {
           duration: this.state.duration,
           queue: this.state.queue,
     }
-
+    const {channel} = this.props.match.params
+    const {streamSocket} = new WebSocket(`ws://127.0.0.1:8000/ws/stream/${channel}`);
     streamSocket.send(JSON.stringify(data));
   }
 
