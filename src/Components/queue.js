@@ -9,7 +9,7 @@ class Queue extends React.Component {
   
   log(event){
     const queue = this.props.queue
-    console.log(queue)
+    console.log(queue[0].url)
   }
   render(){
     console.log(this.props.queue)
@@ -20,7 +20,7 @@ class Queue extends React.Component {
           <Table.Row>
             <Table.Cell>
               <Header as='h4' image>
-                <Image src={item.url} rounded size='mini' />
+                <Image src={item.image} rounded size='mini' />
                 <Header.Content>
                   {item.title}
                 </Header.Content>
@@ -43,13 +43,6 @@ class Queue extends React.Component {
 
           <Table.Body>
           {myList}
-          <Table.Row>
-            <Table.Cell>
-              <Header as='h4' image>
-              <Image src='https://img.youtube.com/vi/ESXgJ9-H-2U/default.jpg'/>
-              </Header>
-            </Table.Cell>
-          </Table.Row>
           </Table.Body>
           </Table>
           
