@@ -74,7 +74,7 @@ export default class CommonView extends Component {
           title: obj.snippet.title,
           description: 'Youtube search',
           image:`https://img.youtube.com/vi/${obj.id.videoId}/default.jpg`,
-          url: `"https://www.youtube.com/watch?v=${obj.id.videoId}"`,
+          url: `"https://www.youtube.com/watch?v=${obj.id.videoId}&autoplay=0"`,
         }));
 
         this.setState({results: searchResults}) 
@@ -105,7 +105,7 @@ export default class CommonView extends Component {
 
     if (!isOnTheList) {
       new_song !== '' && this.setState({queue: [...queue,new_song]}, 
-        () => {this.setUrl;}
+        () => {this.setUrl();}
       )
     }
   }
@@ -134,7 +134,7 @@ export default class CommonView extends Component {
     array.splice(index, 1);
 
     this.setState({queue: array}, 
-      () => {this.setUrl;}
+      () => {this.setUrl();}
     )
   }
 
@@ -155,7 +155,7 @@ export default class CommonView extends Component {
   }
 
   log(event){
-    console.log(this.state.queue)
+    console.log(this.state.url)
   }
 
 //function referencing player
@@ -176,7 +176,7 @@ export default class CommonView extends Component {
 
         <div >
           <Grid>
-            <Grid.Column width={6}>
+            <Grid.Column width={3}>
               <Search
                 size="large"
                 aligned="right"
@@ -200,7 +200,7 @@ export default class CommonView extends Component {
             muted={this.state.muted}
           />
         </div>
-
+      <button onClick={this.log}>test</button>
       </div>
            
     )

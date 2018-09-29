@@ -13,7 +13,7 @@ export default class Navbar extends Component {
     return (
       <div className="Navbar">
   
-        <Menu attached = "top" inverted color ="violet" >
+        <Menu attached = "top" inverted color ="violet" size="huge">
 
           <Menu.Menu position="left">
 
@@ -49,16 +49,18 @@ export default class Navbar extends Component {
 
           </Menu.Menu>
         
-        <Menu.Menu position='right'>
+          <Menu.Menu position='right'>
 
-          <Menu.Item>
-            <Dropdown  icon = "bars">
-              <Dropdown.Item text='Logout' />
-            </Dropdown>
-          </Menu.Item>
+            <Menu.Item>
+              <Dropdown  icon = "bars">
+                <Dropdown.Menu>
+                  <Dropdown.Item text='Logout' />
+                </Dropdown.Menu>
+              </Dropdown>
+            </Menu.Item>
 
-        </Menu.Menu>
-        
+          </Menu.Menu>
+
         </Menu>
 
       </div>
