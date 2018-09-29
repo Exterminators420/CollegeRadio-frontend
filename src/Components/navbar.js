@@ -3,9 +3,16 @@ import { Menu, Dropdown} from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 export default class Navbar extends Component {
-  state = { activeItem: 'home' }
+  constructor(props) {
+    super(props);
+  this.state = { 
+    activeItem: `${this.props.name}`
+  }
+  }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (e, { name }) => {
+    this.setState({ activeItem: name })
+    window.location = `/channel/${name}`}
 
   render() {
     const { activeItem } = this.state
@@ -19,39 +26,39 @@ export default class Navbar extends Component {
           
             <Link to="/channel/home" >
               <Menu.Item 
-                name='Home' 
-                active={activeItem === 'Home'} 
+                name='home' 
+                active={activeItem === 'home'} 
                 onClick={this.handleItemClick}
               />
             </Link>
              <Link to="/channel/pop" >
               <Menu.Item
-                name='Pop'
-                active={activeItem === 'Pop'}
+                name='pop'
+                active={activeItem === 'pop'}
                 onClick={this.handleItemClick}
               />
             </Link>
             
             <Link to="/channel/rock" >
               <Menu.Item
-                name='Rock'
-                active={activeItem === 'Rock'}
+                name='rock'
+                active={activeItem === 'rock'}
                 onClick={this.handleItemClick}
               />
             </Link>
             
             <Link to="/channel/romance" >
               <Menu.Item
-                name='Romance'
-                active={activeItem === 'Romance'}
+                name='romance'
+                active={activeItem === 'romance'}
                 onClick={this.handleItemClick}
               />
             </Link>
             
             <Link to="/channel/bollywood" >
               <Menu.Item
-                name='Bollywood'
-                active={activeItem === 'Bollywood'}
+                name='bollywood'
+                active={activeItem === 'bollywood'}
                 onClick={this.handleItemClick}
               />
             </Link>

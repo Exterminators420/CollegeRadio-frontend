@@ -12,7 +12,7 @@ export default class CommonView extends Component {
 
     this.state = {
       streamSocket: new WebSocket(`ws://127.0.0.1:8000/ws/stream/${this.props.match.params.name}/`),
-      url: null ,
+      url:null,
       playing: true,
       volume: 0.8,
       muted: false,
@@ -173,7 +173,7 @@ export default class CommonView extends Component {
 
       <div>
 
-        <Navbar />
+        <Navbar name={this.props.match.params.name} />
 
         <div >
           <Grid>
