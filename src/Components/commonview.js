@@ -14,6 +14,7 @@ export default class CommonView extends Component {
 
     this.state = {
       streamSocket: new WebSocket(`ws://127.0.0.1:8000/ws/stream/${this.props.match.params.name}/`),
+      chatSocket: new WebSocket(`ws://127.0.0.1:8000/ws/chatbox/${this.props.match.params.name}/`),
       url:null,
       playing: true,
       volume: 1,
