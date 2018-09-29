@@ -19,8 +19,8 @@ class Queue extends React.Component {
     const myList = queue.map(item => (
           <Table.Row>
             <Table.Cell>
-              <Header as='h4' image>
-                <Image src={item.image} rounded size='mini' />
+              <Header as='h2' image>
+                <Image src={item.image} rounded size='medium' />
                 <Header.Content>
                   {item.title}
                 </Header.Content>

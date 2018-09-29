@@ -3,6 +3,7 @@ import {Search, Grid,} from 'semantic-ui-react'
 import ReactPlayer from 'react-player'
 import Navbar from './navbar'
 import Queue from './queue.js'
+import './commonview.css'
 
 const API_key = 'AIzaSyALsePfmVRgtvFqd7eSjBOSM7UL_Ti2YW4';
 
@@ -40,7 +41,7 @@ export default class CommonView extends Component {
 
   componentDidMount() {
     const streamSocket = this.state.streamSocket;
-    for (var i=0; i<1; i++){
+    
     streamSocket.onmessage = (e) => {
         let data = JSON.parse(e.data);
         console.log(data['played'])
@@ -50,15 +51,11 @@ export default class CommonView extends Component {
           played: data['played'],
           queue: data['queue']
         },
-        () => {this.player.seekTo(this.state.played)
+        () => {for (var i=0; i<1; i++){this.player.seekTo(this.state.played)}
           })
     }
   }
-  }
 
-  componentWillReceiveProps(nextProps) {
-
-  }
 
 
   
@@ -169,7 +166,7 @@ export default class CommonView extends Component {
 
     return (
 
-      <div>
+      <div className="mainWrapper">
 
         <Navbar name={this.props.match.params.name} />
 
@@ -198,12 +195,20 @@ export default class CommonView extends Component {
             muted={this.state.muted}
           />
         </div>
+
+        <Queue queue={this.state.queue}/>
+
+        <div className="seek-slider-container">
+        <input 
+          type="range" 
+          name="seek" min="0" 
+          max={this.state.duration} 
+          value={this.state.seek} 
+          onChange={this.handleSeek} 
+          className='slider' />
+        </div>
       
-      <Queue queue={this.state.queue}/>
-      </div>
-
-
-           
+      </div>  
     )
   }
 }
