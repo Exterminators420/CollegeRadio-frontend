@@ -1,4 +1,4 @@
-//import 'antd/dist/antd.css';
+import 'antd/dist/antd.css';
 import './css/login.css';
 import React from 'react';
 import { Form, Icon, Input, Button, Spin } from 'antd';
