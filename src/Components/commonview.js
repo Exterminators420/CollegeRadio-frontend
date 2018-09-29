@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {Search, Grid,} from 'semantic-ui-react'
 import ReactPlayer from 'react-player'
 import Navbar from './navbar'
-import debounce from 'lodash.debounce';
 
 const API_key = 'AIzaSyALsePfmVRgtvFqd7eSjBOSM7UL_Ti2YW4';
 
@@ -27,7 +26,7 @@ export default class CommonView extends Component {
               url:''
       }),
     };
-    this.setInitial = this.setSocket.bind(this)
+
     this.handleChange = this.handleChange.bind(this);
     this.handleQueue = this.handleQueue.bind(this);
     this.setUrl = this.setUrl.bind(this)
@@ -40,38 +39,32 @@ export default class CommonView extends Component {
     this.log = this.log.bind(this);   //for devlopement only
   }
 
-//function defining streamSocket
-
-  setSocket(){
-    
-  }
 
 //function responsible for syncing data 
 
   componentDidMount() {
     this.setState({channel: this.props.match.params.name},
       () => this.setState({streamSocket: new WebSocket(`ws://127.0.0.1:8000/ws/stream/${this.state.channel}/`)},
-    () => this.setInitial())
-    )
-  }
-
-    setInitial(){
-      this.state.streamSocket.onmessage = (e) => {
+      () => this.state.streamSocket.onmessage = (e) => {
         let data = JSON.parse(e.data);
-        
+        console.log(data['played'])
         this.setState({
           url: data['url'],
           duration: data['duration'],
           played: data['played'],
           queue: data['queue']
         })
-  
-        if (!this.state.played){
-        this.player.seekTo(this.state.played);
-        }
+    })
+    )
+    if (this.state.played){
+      this.player.seekTo(this.state.played);
       }
-    } 
-  
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+  }
+
 
   
 //function responsible for retrieving and mapping search results
@@ -170,7 +163,7 @@ export default class CommonView extends Component {
   }
 
   log(event){
-    console.log(this.state.channel)
+    console.log(this.state.queue)
   }
 
 //function referencing player
@@ -194,7 +187,6 @@ export default class CommonView extends Component {
             <Grid.Column width={3}>
               <Search
                 size="large"
-                aligned
                 onSearchChange={this.handleChange}
                 results={results}
                 value={query}
