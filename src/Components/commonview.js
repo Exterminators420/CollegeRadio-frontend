@@ -15,7 +15,7 @@ export default class CommonView extends Component {
       streamSocket: new WebSocket(`ws://127.0.0.1:8000/ws/stream/${this.props.match.params.name}/`),
       url:null,
       playing: true,
-      volume: 0.8,
+      volume: 1,
       muted: false,
       played: 0,
       loaded: 0,
@@ -186,20 +186,21 @@ export default class CommonView extends Component {
             </Grid.Column>
           </Grid>
         </div>
-
-        <div className="VidWrapper">
-          <ReactPlayer
-            ref={this.ref} 
-            url={this.state.url} 
-            playing
-            onEnded={this.onEnd}
-            onProgress={this.onProgress}
-            volume={this.state.volume}
-            muted={this.state.muted}
-          />
-        </div>
-      
-      <Queue queue={this.state.queue}/>
+        <div id="flex-container">
+            <div className="VidWrapper">
+              <ReactPlayer
+                ref={this.ref} 
+                url={this.state.url} 
+                playing
+                onEnded={this.onEnd}
+                onProgress={this.onProgress}
+                volume={this.state.volume}
+                muted={this.state.muted}
+              />
+            </div>
+          
+          <Queue queue={this.state.queue}/>
+      </div>
       </div>
 
 

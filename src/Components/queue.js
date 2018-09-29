@@ -1,16 +1,7 @@
 import React from 'react'
-import { Header, Image, Table, TableBody } from 'semantic-ui-react'
+import { Header, Image, Table, TableBody, Segment } from 'semantic-ui-react'
 
 class Queue extends React.Component {
-  constructor(props){
-    super(props);
-    this.log=this.log.bind(this)
-  }
-  
-  log(event){
-    const queue = this.props.queue
-    console.log(queue[0].url)
-  }
   render(){
     console.log(this.props.queue)
     const queue = this.props.queue
@@ -32,23 +23,22 @@ class Queue extends React.Component {
     
 
     return (
-      <div>
-          <h2>Hi from queue</h2>
-          <Table basic="very" celled collapsing>
-          <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell>Employee</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+      <div id="queue">
+          <Header as='h2' attached='top'>
+              Currently Playing . . . 
+          </Header>
+          <Segment attached>
+            <Table basic="very" celled collapsing>
+            <Table.Header>
 
-          <Table.Body>
-          {myList}
-          </Table.Body>
-          </Table>
-          
-          
-          
-          <button onClick={this.log}>test</button>
+      </Table.Header>
+
+            <Table.Body>
+            {myList}
+            </Table.Body>
+            </Table>
+          </Segment>
+
         </div>
 )
     
