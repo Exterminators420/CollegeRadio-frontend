@@ -177,6 +177,7 @@ export default class CommonView extends Component {
         <div >
           <Grid>
             <Grid.Column width={3}>
+            <div id="search">
               <Search
                 size="large"
                 onSearchChange={this.handleChange}
@@ -184,6 +185,7 @@ export default class CommonView extends Component {
                 value={query}
                 onResultSelect={this.handleQueue}
               />
+            </div>
             </Grid.Column>
           </Grid>
         </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 import * as actions from './store/actions/auth';
 
  

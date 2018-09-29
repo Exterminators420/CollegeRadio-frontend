@@ -23,21 +23,28 @@
   to { transform: rotate(360deg); }
 }
 
+#search{
+  margin:10px;
+}
 #flex-container {
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
 }
 .VidWrapper{
+  margin-left: 15px;
   position: relative;
   width: 640px;
-  display:inline-block
+  display:inline-block;
+  background-color:cyan;
 }
+
 .song{
   white-space: nowrap; 
   width: 250px; 
   overflow: hidden;
   text-overflow: ellipsis; 
+
 }
 #queue{
   padding:2px 8px 8px 8px;
