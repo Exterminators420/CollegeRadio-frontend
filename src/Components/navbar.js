@@ -17,15 +17,14 @@ export default class Navbar extends Component {
 
           <Menu.Menu position="left">
           
-            <Link to="/home" >
+            <Link to="/channel/home" >
               <Menu.Item 
                 name='Home' 
                 active={activeItem === 'Home'} 
                 onClick={this.handleItemClick}
               />
             </Link>
-            
-            <Link to="/pop" >
+             <Link to="/channel/pop" >
               <Menu.Item
                 name='Pop'
                 active={activeItem === 'Pop'}
@@ -33,7 +32,7 @@ export default class Navbar extends Component {
               />
             </Link>
             
-            <Link to="/rock" >
+            <Link to="/channel/rock" >
               <Menu.Item
                 name='Rock'
                 active={activeItem === 'Rock'}
@@ -41,7 +40,7 @@ export default class Navbar extends Component {
               />
             </Link>
             
-            <Link to="/romance" >
+            <Link to="/channel/romance" >
               <Menu.Item
                 name='Romance'
                 active={activeItem === 'Romance'}
@@ -49,7 +48,7 @@ export default class Navbar extends Component {
               />
             </Link>
             
-            <Link to="/bollywood" >
+            <Link to="/channel/bollywood" >
               <Menu.Item
                 name='Bollywood'
                 active={activeItem === 'Bollywood'}
