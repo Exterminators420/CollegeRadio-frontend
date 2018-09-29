@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Search, Grid,} from 'semantic-ui-react'
 import ReactPlayer from 'react-player'
 import Navbar from './navbar'
+import Queue from './queue.js'
 
 const API_key = 'AIzaSyALsePfmVRgtvFqd7eSjBOSM7UL_Ti2YW4';
 
@@ -208,7 +209,10 @@ export default class CommonView extends Component {
           />
         </div>
       <button onClick={this.log}>test</button>
+      <Queue queue={this.state.queue}/>
       </div>
+
+
            
     )
   }
