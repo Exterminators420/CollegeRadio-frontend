@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import CommonView from './Components/commonviewew';
+import CommonView from './Components/commonview';
 
 class App extends Component {
  
