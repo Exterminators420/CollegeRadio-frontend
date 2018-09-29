@@ -6,8 +6,10 @@ class Queue extends React.Component {
     super(props);
     this.log=this.log.bind(this)
   }
+  
   log(event){
-    console.log(this.state.queue)
+    const queue = this.props.queue
+    console.log(queue)
   }
   render(){
     console.log(this.props.queue)
@@ -41,6 +43,13 @@ class Queue extends React.Component {
 
           <Table.Body>
           {myList}
+          <Table.Row>
+            <Table.Cell>
+              <Header as='h4' image>
+              <Image src='https://img.youtube.com/vi/ESXgJ9-H-2U/default.jpg'/>
+              </Header>
+            </Table.Cell>
+          </Table.Row>
           </Table.Body>
           </Table>
           

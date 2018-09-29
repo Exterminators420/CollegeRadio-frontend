@@ -20,10 +20,7 @@ export default class MasterCommonView extends Component {
       loaded: 0,
       duration: 0,
       seeking: 0,
-      queue: ({title: '',
-              image: '',
-              url:''
-      }),
+      queue: [],
     };
 
     this.handleChange = this.handleChange.bind(this);

@@ -21,10 +21,7 @@ export default class CommonView extends Component {
       loaded: 0,
       duration: 0,
       seeking: 0,
-      queue: [{title: '',
-              image: '',
-              url:''
-      }],
+      queue: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -81,7 +78,7 @@ export default class CommonView extends Component {
           title: obj.snippet.title,
           description: 'Youtube search',
           image:`https://img.youtube.com/vi/${obj.id.videoId}/default.jpg`,
-          url: `"https://www.youtube.com/watch?v=${obj.id.videoId}&autoplay=0"`,
+          url: `https://www.youtube.com/watch?v=${obj.id.videoId}&autoplay=0`,
         }));
 
         this.setState({results: searchResults}) 
@@ -201,7 +198,7 @@ export default class CommonView extends Component {
             muted={this.state.muted}
           />
         </div>
-      <button onClick={this.log}>test</button>
+      
       <Queue queue={this.state.queue}/>
       </div>
 
