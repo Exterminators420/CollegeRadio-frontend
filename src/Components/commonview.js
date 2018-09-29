@@ -41,7 +41,7 @@ export default class CommonView extends Component {
 
   componentDidMount() {
     const streamSocket = this.state.streamSocket;
-    for (var i=0; i<1; i++){
+    let i=0;
     streamSocket.onmessage = (e) => {
         let data = JSON.parse(e.data);
         console.log(data['played'])
@@ -51,10 +51,10 @@ export default class CommonView extends Component {
           played: data['played'],
           queue: data['queue']
         },
-        () => {this.player.seekTo(this.state.played)
-          })
+        () => {for (; i<1; i++){this.player.seekTo(this.state.played)}}
+          )
     }
-  }
+  
   }
 
   componentWillReceiveProps(nextProps) {
