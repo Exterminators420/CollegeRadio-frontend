@@ -10,6 +10,8 @@ export default class CommonView extends Component {
     super(props);
 
     this.state = {
+      channel: '',
+      streamSocket: '',
       url: null ,
       playing: true,
       volume: 0.8,
@@ -40,22 +42,24 @@ export default class CommonView extends Component {
 //function responsible for syncing data 
 
   componentDidMount() {
-    const {channel} = this.props.match.params
-    const {streamSocket} = new WebSocket(`ws://127.0.0.1:8000/ws/stream/${channel}`);
-    streamSocket.onmessage = (e) => {
-      let data = JSON.parse(e.data);
-      
-      this.setState({
-        url: data['url'],
-        duration: data['duration'],
-        played: data['played'],
-        queue: data['queue']
-      })
-
-      if (!this.state.played){
-      this.player.seekTo(this.state.played);
-      }
-    }
+    this.setState({channel: this.props.match.params.name},
+      () => this.setState({streamSocket: new WebSocket(`ws://127.0.0.1:8000/ws/stream/${this.state.channel}`)},
+      () => {
+        this.state.streamSocket.onmessage = (e) => {
+          let data = JSON.parse(e.data);
+          
+          this.setState({
+            url: data['url'],
+            duration: data['duration'],
+            played: data['played'],
+            queue: data['queue']
+          })
+    
+          if (!this.state.played){
+          this.player.seekTo(this.state.played);
+          }
+        }
+      } ))
   }
 
   
@@ -122,7 +126,7 @@ export default class CommonView extends Component {
           duration: this.state.duration,
           queue: this.state.queue,
     }
-    const {channel} = this.props.match.params
+    const {channel} = this.props.match.params.name
     const {streamSocket} = new WebSocket(`ws://127.0.0.1:8000/ws/stream/${channel}`);
     streamSocket.send(JSON.stringify(data));
   }
@@ -157,7 +161,7 @@ export default class CommonView extends Component {
   }
 
   log(event){
-    console.log(this.state.url)
+    console.log(this.state.channel)
   }
 
 //function referencing player

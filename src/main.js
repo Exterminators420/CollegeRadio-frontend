@@ -7,7 +7,7 @@ export default class Main extends Component {
     return (
         <main>
           <Switch>
-            <Route path="channel:" component={CommonView}/>
+            <Route path="/channel/:name" component={CommonView}/>
           </Switch>  
         </main>
     );
