@@ -27,7 +27,7 @@ export default class CommonView extends Component {
               url:''
       }),
     };
-    this.setSocket = this.setSocket.bind(this)
+    this.setInitial = this.setSocket.bind(this)
     this.handleChange = this.handleChange.bind(this);
     this.handleQueue = this.handleQueue.bind(this);
     this.setUrl = this.setUrl.bind(this)
@@ -43,16 +43,19 @@ export default class CommonView extends Component {
 //function defining streamSocket
 
   setSocket(){
-    this.setState({channel: this.props.match.params.name},
-      () => this.setState({streamSocket: new WebSocket(`ws://127.0.0.1:8000/ws/stream/${this.state.channel}/`)})
-    )
+    
   }
 
 //function responsible for syncing data 
 
   componentDidMount() {
-    this.setSocket();
-    () => {
+    this.setState({channel: this.props.match.params.name},
+      () => this.setState({streamSocket: new WebSocket(`ws://127.0.0.1:8000/ws/stream/${this.state.channel}/`)},
+    () => this.setInitial())
+    )
+  }
+
+    setInitial(){
       this.state.streamSocket.onmessage = (e) => {
         let data = JSON.parse(e.data);
         
@@ -67,8 +70,8 @@ export default class CommonView extends Component {
         this.player.seekTo(this.state.played);
         }
       }
-    }  
-  }
+    } 
+  
 
   
 //function responsible for retrieving and mapping search results
