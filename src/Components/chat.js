@@ -73,7 +73,7 @@ export default class Chat extends React.Component {
                   onChange={this.handleChange}
                 />
                 
-                <br/>
+                
 
                 <Button 
                   id="chat-message-submit" 

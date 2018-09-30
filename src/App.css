@@ -8,7 +8,10 @@ body{
 #flex-container {
   display: grid;
   grid-template-columns: auto auto auto ;
-  padding :2rem;
+  padding-left:2 rem;
+  padding-right: 2 rem;
+  padding-bottom: 2 rem;
+
 }
 .VidWrapper{
   margin-left: 15px;
@@ -46,7 +49,7 @@ body{
 
   min-width:22vw;
   padding :0.5rem;
-  margin : 0.5rem;
+  margin : 1rem;
   min-height :40vh;
   font-size: 1.2rem;
   border :  0.005rem solid grey;
