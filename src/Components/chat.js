@@ -41,6 +41,7 @@ export default class Chat extends React.Component {
 
   handleSubmit = (e)=>{
     this.send_data()
+    document.getElementById('chat-message-input').value=''
     e.preventDefault();
   }
 
@@ -64,7 +65,7 @@ export default class Chat extends React.Component {
 
               <Table.Body>
                 <div id = "chat-log" class = "Chat_log" >
-                {this.state.chatLog}
+                  {this.state.chatLog}
                 </div>
              
                 <Input 
