@@ -72,10 +72,9 @@ export default class Chat extends React.Component {
                   id="chat-message-input" 
                   type="text" size="small" 
                   onChange={this.handleChange}
-                />
+                  placeholder='Send Text'
+                /> 
                 
-                
-
                 <Button 
                   id="chat-message-submit" 
                   type="button" 

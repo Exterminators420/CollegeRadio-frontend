@@ -39,7 +39,7 @@ body{
 }
 
 #chat{
-  padding:2px 8px 8px 8px;
+  padding:2px 8px 8px 2px;
   width: 25vw;
   box-shadow: rgb(187,187,1870) 0px 2px 8px;
   margin-right:0px;
@@ -92,4 +92,8 @@ body{
 .home button:hover{
   background-color: #22a6b3;
   
+}
+
+#chat-message-input{
+  margin-left: 14px;
 }

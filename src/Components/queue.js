@@ -31,7 +31,7 @@ export default class Queue extends React.Component {
         
         <Segment attached>
 
-          <Table basic="very" celled collapsing>
+          <Table basic="very" celled collapsing >
 
             <Table.Body>
             {myList}
