@@ -11,7 +11,7 @@ export default class Queue extends React.Component {
           <Table.Row>
             <Table.Cell>
               <Header as='h3' image>
-                <Image src={item.image} rounded size='medium' />
+                <Image src={item.image} rounded size='massive' />
                 <Header.Content>
                   <div className="song">{item.title}</div>
                 </Header.Content>

@@ -47,7 +47,7 @@ export default class Chat extends React.Component {
 
   handleChat = (e)=>{
     let ChatLog = this.state.chatLog
-    const message = <p>{this.state.message}</p>
+    const message = <p>{this.state.message}<hr/></p>
     this.setState({chatLog: [...ChatLog, message]})
   }
 
