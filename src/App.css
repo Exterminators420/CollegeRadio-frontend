@@ -25,6 +25,7 @@
 
 #search{
   margin:10px;
+  margin-left: 15px;
 }
 #flex-container {
   display: grid;
