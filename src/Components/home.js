@@ -16,7 +16,7 @@ export default class Home extends Component {
                 
                 <a href = "/channel/home">
                     <button>
-                    College Radio
+                    Wavify
                     </button>
                 </a>
             </center>

@@ -194,7 +194,9 @@ export default class CommonView extends Component {
               height="100%"
               width="100%"
             />
+            <div className="overlay"></div>
           </div>
+          
 
           <div>
             <Chat 
