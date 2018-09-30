@@ -1,50 +1,55 @@
 import React from 'react'
 import { Header, Table, Segment, Input, TextArea } from 'semantic-ui-react'
 
-class Chat extends React.Component {
+export default class Chat extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      chatLog:'',
+      chatLog:[],
       message:'',
       chatSocket: new WebSocket(`ws://127.0.0.1:8000/ws/chatbox/${this.props.channel}/`),
 
     }
-    console.log("dfsdfsdfsssssssssssssss")
+
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.send_data = this.send_data.bind(this)
+    this.handleChat = this.handleChat.bind(this)
+    
   }
   componentDidMount(){
       const chatSocket = this.state.chatSocket;
       chatSocket.onmessage = (e) => {
       let data = JSON.parse(e.data);
       this.setState({
-        chatLog: data['chatLog'],
-      })
+        message: data['chatLog']},
+        () => this.handleChat())
      }
     }
 
     send_data = (e) =>{
 
       let data = {
-            chatLog: this.state.chatLog,
+            chatLog: this.state.message,
       };
       this.state.chatSocket.send(JSON.stringify(data));
 
   }
-  
-  handleChange=(e)=>{
-    this.setState({message:e.target.value})
-    console.log(this.state.chatLog)
-
-  }
   handleSubmit = (e)=>{
-    const newChatLog = this.state.chatLog + '\n' + this.state.message
-    this.setState({message:''})
-    this.setState({chatLog:newChatLog})
-    console.log(newChatLog)
-    this.send_data();
+    this.setState({message:e.target.value}),
+    e.preventDefault()
+  }
+
+  handleSubmit = (e)=>{
+    this.setState({message:e.target.value},
+      () => this.send_data())
     e.preventDefault();
   }
 
+  handleChat = (e)=>{
+    let ChatLog = this.state.chatLog
+    const message = this.state.message
+    this.setState({chatLog: [...ChatLog, message]})
+  }
 
   render(){
     return (
@@ -66,10 +71,10 @@ class Chat extends React.Component {
             </Table>
           </Segment>
 
-        </div>
+      </div>
 )
     
   }
 }
 
-export default Chat
+
