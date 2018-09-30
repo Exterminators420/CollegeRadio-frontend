@@ -77,3 +77,37 @@
 {
   padding : 1rem  1rem  1rem  2rem;
 }
+
+.home{
+  padding : 0;
+  margin :0;
+  min-height :100vh;
+  min-width: 100vw;
+  background-image: url("https://img.wallpapersafari.com/desktop/1920/1080/45/67/69T3kL.jpg");
+  background-repeat: no-repeat;
+}
+
+.home h1{
+  color:white;
+  padding: 10rem 0 0 0 ;
+  font-size: 3.5rem;
+}
+
+.home button{
+
+  color:black;
+  padding:1rem 2rem;
+  font-size: 2rem;
+  border-radius: 3rem;
+  background-color: #7ed6df;
+  color:black;
+  border: none;
+  margin: 10rem 0 0 0 ;
+  cursor: pointer;
+
+}
+
+.home button:hover{
+  background-color: #22a6b3;
+  
+}
