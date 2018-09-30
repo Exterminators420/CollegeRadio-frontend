@@ -202,7 +202,7 @@ export default class CommonView extends Component {
                 muted={this.state.muted}
               />
             </div>
-            <Chat/>
+            <Chat channel={this.props.match.params.name}/>
           <Queue queue={this.state.queue}/>
           
       </div>
