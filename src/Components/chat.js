@@ -61,12 +61,15 @@ export default class Chat extends React.Component {
             <Table basic="very" celled collapsing>
             <Table.Header>
 
-      </Table.Header>
+           </Table.Header>
 
             <Table.Body>
-            <TextArea id="chat-log" cols="39" autoHeight value={this.state.chatLog}/><br/>
-            <Input id="chat-message-input" type="text" size="small" onChange={this.handleChange} value={this.state.message}/><br/>
-            <Input id="chat-message-submit" type="button" value="Send" onClick={this.handleSubmit}/>    
+              <div id = "chat-log" class = "Chat_log" >
+              test
+              </div>
+             
+            <Input id="chat-message-input" type="text" size="small"/><br/>
+            <Input id="chat-message-submit" type="button" value="Send"/>    
             </Table.Body>
             </Table>
           </Segment>
