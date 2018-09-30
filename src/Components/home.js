@@ -11,7 +11,7 @@ export default class Home extends Component {
             
             <center>
                 <h1>
-                    Music <br></br>For The People. By the People. With the People.
+                    Music.<br/>For The People. By the People. With the People.
                 </h1>
                 
                 <a href = "/channel/home">

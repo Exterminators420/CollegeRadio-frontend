@@ -33,8 +33,6 @@ export default class CommonView extends Component {
     this.send_data = this.send_data.bind(this);
 
     this.onEnd = this.onEnd.bind(this);
-
-    this.log = this.log.bind(this);   //for devlopement only
   }
 
 
@@ -44,26 +42,19 @@ export default class CommonView extends Component {
     const streamSocket = this.state.streamSocket;
     let i=0;
     streamSocket.onmessage = (e) => {
-        let data = JSON.parse(e.data);
-        console.log(data['played'])
-        this.setState({
-          url: data['url'],
-          duration: data['duration'],
-          played: data['played'],
-          queue: data['queue']
-        },
+      let data = JSON.parse(e.data);
+      console.log(data['played'])
+      this.setState({
+        url: data['url'],
+        duration: data['duration'],
+        played: data['played'],
+        queue: data['queue']},
         () => {for (; i<1; i++){this.player.seekTo(this.state.played)}}
-          )
+      )
     }
-  
-  }
-
-  componentWillReceiveProps(nextProps) {
-
   }
 
 
-  
 //function responsible for retrieving and mapping search results
 
   handleChange = (event) => {    
@@ -122,10 +113,10 @@ export default class CommonView extends Component {
   send_data = e =>{
 
     let data = {
-          url: this.state.url,
-          played: this.state.played,
-          duration: this.state.duration,
-          queue: this.state.queue,
+      url: this.state.url,
+      played: this.state.played,
+      duration: this.state.duration,
+      queue: this.state.queue,
     };
     this.state.streamSocket.send(JSON.stringify(data));
   }
@@ -153,17 +144,11 @@ export default class CommonView extends Component {
   }
 
 
-//function defining progress of a video
-
-  log(event){
-    console.log(this.state.queue)
-  }
-
 //function referencing player
 
   ref = player => {
     this.player = player
-      }
+  }
 
     
   render() {
@@ -173,43 +158,59 @@ export default class CommonView extends Component {
 
       <div>
 
-        <Navbar name={this.props.match.params.name} />
-
+        <div>
+          <Navbar 
+            name={this.props.match.params.name}
+          />
+        </div>
+        
         <div >
           <Grid>
             <Grid.Column width={3}>
-            <div id="search">
-              <Search
-                size="large"
-                onSearchChange={this.handleChange}
-                results={results}
-                value={query}
-                onResultSelect={this.handleQueue}
-              />
-            </div>
+              <div id="search">
+                <Search
+                  size="large"
+                  onSearchChange={this.handleChange}
+                  results={results}
+                  value={query}
+                  onResultSelect={this.handleQueue}
+                />
+              </div>
             </Grid.Column>
           </Grid>
         </div>
+
         <div id="flex-container">
-            <div className="VidWrapper">
-              <ReactPlayer
-                ref={this.ref} 
-                url={this.state.url} 
-                playing
-                onEnded={this.onEnd}
-                onProgress={this.onProgress}
-                volume={this.state.volume}
-                muted={this.state.muted}
-              />
-            </div>
-            <Chat channel={this.props.match.params.name}/>
-          <Queue queue={this.state.queue}/>
+
+          <div className="VidWrapper">
+            <ReactPlayer
+              ref={this.ref} 
+              url={this.state.url} 
+              playing
+              onEnded={this.onEnd}
+              onProgress={this.onProgress}
+              volume={this.state.volume}
+              muted={this.state.muted}
+              height="100%"
+              width="100%"
+            />
+          </div>
+
+          <div>
+            <Chat 
+              channel={this.props.match.params.name}
+            />
+          </div>
           
-      </div>
-      </div>
+          <div>
+            <Queue 
+              queue={this.state.queue}
+            />
+          </div>
+          
+        </div>
 
-
-           
+      </div>
     )
   }
 }

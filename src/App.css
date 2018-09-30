@@ -1,28 +1,6 @@
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+body{
+  background-color: aqua
 }
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 #search{
   margin:10px;
   margin-left: 15px;
@@ -39,6 +17,7 @@
   height: 55vh;
   display:inline-block;
   background-color:cyan;
+  background-image: url("https://i.pinimg.com/originals/a3/8c/ba/a38cbae225a597dd16be170c17a65157.png");
 }
 
 .song{
