@@ -16,10 +16,13 @@ class Chat extends React.Component {
             <Table basic="very" celled collapsing>
             <Table.Header>
 
-      </Table.Header>
+           </Table.Header>
 
             <Table.Body>
-            <TextArea id="chat-log" cols="39" autoHeight/><br/>
+              <div id = "chat-log" class = "Chat_log" >
+              test
+              </div>
+             
             <Input id="chat-message-input" type="text" size="small"/><br/>
             <Input id="chat-message-submit" type="button" value="Send"/>    
             </Table.Body>
